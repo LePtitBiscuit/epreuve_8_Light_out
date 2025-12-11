@@ -1,63 +1,63 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Lights Out</title>
-<link rel="stylesheet" href="style.css">
-</head>
-<body>
-<div class="container">
-<header>
-<h1>Lights Out</h1>
-<div class="hint">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Lights Out</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Lights Out</h1>
+        <div class="hint">
+          <p>
+            <strong>L'emplacement et les commandes d'activation sont protégés ici.</strong>
+          </p>
 
-    <h2><span class="alert-emoji">🚨</span> Mission Critique : Désactivation du système de sécurité</h2>
-    <p><strong>Agent, votre mission est d'une importance capitale.</strong> Vous avez infiltré le QG ennemi et 
-      devez désactiver leur système de sécurité avant qu'ils ne découvrent votre présence. 
-      Le temps presse.</p>
+          <p>Résolvez ce puzzle pour révéler les <strong>informations cachées</strong> dans l'image.</p>
+        </div>
+      </header>
 
-    <p>Le système de contrôle est protégé par un mécanisme de sécurité complexe. Résolvez ce puzzle pour révéler les <strong>
-      commandes de désactivation secrètes</strong> cachées dans l'image.</p>
-    <p><span class="alert-emoji">⚠️</span> <strong>Attention :</strong> Une fois le puzzle résolu, connectez-vous immédiatement au serveur de contrôle pour exécuter les commandes.
-       Chaque seconde compte.</p>
-</div>
-</header>
+      <main>
+        <div class="success-message" id="successMessage" style="display: none">
+          <div class="success-content">
+            <span class="success-icon"></span>
+            <h3>Mission Accomplie !</h3>
+            <p>Utilisez ces commandes pour mettre LUMEN hors d'état de nuire</p>
+          </div>
+        </div>
+        <div class="board" id="board"></div>
+      </main>
 
-<main>
-<div class="success-message" id="successMessage" style="display:none;">
-  <div class="success-content">
-    <span class="success-icon"></span>
-    <h3>Mission Accomplie !</h3>
-    <p>Utilisez ces commandes pour mettre LUMEN hors d'état de nuire</p>
-  </div>
-</div>
-<div class="board" id="board"></div>
-</main>
+      <aside class="side">
+        <div class="controls">
+          <button id="startGame">Commencer</button>
+          <button id="shuffle">Reset</button>
+        </div>
 
-<aside class="side">
-<div class="controls">
-<button id="startGame">Commencer</button>
-<button id="shuffle">Reset</button>
-</div>
+        <div class="info">
+          <div>Temps restant : <span id="timer" class="big">05:00</span></div>
+          <div style="margin-top: 8px">Coups : <span id="moves">0</span></div>
+          <div style="margin-top: 8px">État : <span id="status">En attente</span></div>
+        </div>
 
- 
-<div class="info">
-<div>Temps restant : <span id="timer" class="big">05:00</span></div>
-<div style="margin-top:8px">Coups : <span id="moves">0</span></div>
-<div style="margin-top:8px">État : <span id="status">En attente</span></div>
-</div>
-
-<details style="margin-top:12px;color:#cbd5e1">
-<summary>Instructions</summary>
-<ul>
-<li>Appuyez sur <strong>Commencer</strong> pour activer le jeu et lancer le chrono.</li>
-<li>Cliquez sur une case pour basculer elle-même et ses voisins (haut, bas, gauche, droite).</li>
-<li>Les cases allumées montrent une portion de l'image. Gagnez en allumant toutes les cases !</li>
-</ul>
-</details>
-</aside>
-</div>
-<script src="script.js"></script>
-</body>
+        <details style="margin-top: 12px; color: #cbd5e1">
+          <summary>Instructions</summary>
+          <ul>
+            <li>Appuyez sur <strong>Commencer</strong> pour activer le jeu et lancer le chrono.</li>
+            <li>Cliquez sur une case pour basculer elle-même et ses voisins (haut, bas, gauche, droite).</li>
+            <li>Les cases allumées montrent une portion de l'image. Gagnez en allumant toutes les cases !</li>
+          </ul>
+        </details>
+      </aside>
+    </div>
+    <script src="script.js"></script>
+  </body>
 </html>
