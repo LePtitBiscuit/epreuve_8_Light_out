@@ -1,0 +1,310 @@
+:root{--size:64px}
+
+/* Style du corps de la page - fond sombre */
+body{font-family:system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial;margin:0;padding:20px;background:#111;color:#eee;}
+
+/* Conteneur principal - grille responsive avec sidebar */
+.container{max-width:900px;margin:0 auto;display:grid;grid-template-columns:1fr 320px;gap:20px;align-items:start}
+
+/* En-tête qui s'étend sur toute la largeur */
+header{grid-column:1/-1;margin-bottom:8px}
+
+/* TITRE PRINCIPAL */
+h1{
+  margin:0;
+  font-size:42px;
+  font-weight:700;
+  color:#60a5fa;
+  text-shadow:0 0 20px rgba(96,165,250,0.6),0 0 40px rgba(96,165,250,0.3);
+  letter-spacing:2px;
+  animation:titleGlow 3s ease-in-out infinite, fadeInDown 1s ease-out;
+  text-transform:uppercase;
+}
+
+/* Animation de pulsation lumineuse pour le titre */
+@keyframes titleGlow{
+  0%,100%{
+    text-shadow:0 0 20px rgba(96,165,250,0.6),0 0 40px rgba(96,165,250,0.3);
+    transform:scale(1);
+  }
+  50%{
+    text-shadow:0 0 30px rgba(96,165,250,0.9),0 0 60px rgba(96,165,250,0.5),0 0 80px rgba(96,165,250,0.2);
+    transform:scale(1.02);
+  }
+}
+
+/* Animation d'apparition depuis le haut pour le titre */
+@keyframes fadeInDown{
+  from{
+    opacity:0;
+    transform:translateY(-20px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+/* PLATEAU DE JEU */
+main{position:relative}
+
+/* Conteneur de la grille de jeu */
+.board{
+  display:grid;
+  gap:6px; /* Espacement entre les tuiles */
+  background:#222;
+  padding:10px;
+  border-radius:10px;
+  position: relative;
+}
+
+/* Style des tuiles individuelles */
+.tile{aspect-ratio:1/1;border-radius:6px;display:flex;align-items:center;justify-content:center;cursor:pointer;user-select:none;position:relative;overflow:hidden;background:#111;box-shadow:inset 0 0 0 2px rgba(255,255,255,0.03)}
+
+/* Tuile éteinte - fond sombre */
+.tile.off{background:#111}
+
+
+/* Flou d'image /*
+
+/* Tuile allumée - affiche une portion de l'image avec flou */
+.tile.on{
+  background-size:500% 500%; /* L'image est divisée en 5x5 (25 portions) */
+  transition: filter 0.25s ease;
+}
+
+/* Style quand la grille est remplacée par l'image complète */
+.board.full-image{
+  display: block;
+  border: 2px solid #60a5fa; /* Bordure bleue lumineuse */
+  box-shadow: 0 0 30px rgba(96,165,250,0.5);
+  animation: imageReveal 0.8s ease-out;
+  padding: 10px;
+  background-color: #222;
+  min-height: auto;
+}
+
+/* Animation de révélation de l'image complète */
+@keyframes imageReveal{
+  from{
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to{
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* MESSAGE DE RÉUSSITE */
+.success-message{
+  margin-bottom: 16px;
+  animation: successSlideIn 0.6s ease-out;
+}
+
+/* Contenu du message de réussite */
+.success-content{
+  background: linear-gradient(135deg, rgba(96,165,250,0.2), rgba(74,222,128,0.2));
+  border: 2px solid #4ade80;
+  border-radius: 12px;
+  padding: 16px 20px;
+  text-align: center;
+  box-shadow: 0 0 25px rgba(74,222,128,0.4), inset 0 0 20px rgba(96,165,250,0.1);
+}
+
+/* Icône du message de réussite */
+.success-icon{
+  font-size: 36px;
+  display: block;
+  margin-bottom: 8px;
+  animation: bounce 1s ease-in-out infinite;
+}
+
+/* Titre du message de réussite */
+.success-content h3{
+  margin: 0 0 8px 0;
+  font-size: 24px;
+  color: #4ade80;
+  text-shadow: 0 0 15px rgba(74,222,128,0.6);
+  font-weight: 700;
+}
+
+/* Paragraphe du message de réussite */
+.success-content p{
+  margin: 0;
+  font-size: 16px;
+  color: #cbd5e1;
+  line-height: 1.5;
+}
+
+/* Animation d'apparition du message de réussite */
+@keyframes successSlideIn{
+  from{
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to{
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animation de rebond pour l'icône */
+@keyframes bounce{
+  0%,100%{
+    transform: translateY(0) scale(1);
+  }
+  50%{
+    transform: translateY(-8px) scale(1.1);
+  }
+}
+
+/* SIDEBAR (Panneau de contrôle) */
+.side{background:#0f1720;padding:12px;border-radius:10px;box-shadow:0 4px 18px rgba(0,0,0,0.6)}
+
+/* Style des boutons */
+button{display:inline-block;padding:8px 12px;border-radius:8px;border:0;background:#2563eb;color:white;cursor:pointer}
+
+.answer{margin-top:12px;font-size:14px}
+
+/* Zone d'information (temps, coups, statut) */
+.info{margin-top:12px;font-size:14px}
+
+/* Texte en grand (pour le timer) */
+.big{font-size:24px;font-weight:700}
+
+/* Conteneur des boutons de contrôle */
+.controls{display:flex;gap:8px;flex-wrap:wrap}
+
+footer{grid-column:1/-1;margin-top:12px;font-size:13px;color:#bbb}
+
+/* SECTION HINT (Mission) */
+.hint{
+  font-size:18px;
+  color:#cbd5e1;
+  line-height:1.6;
+  animation: fadeIn 0.8s ease-in;
+}
+
+/* Titre de la mission */
+.hint h2{
+  font-size:28px;
+  margin-bottom:16px;
+  color:#fc10ca;
+  text-shadow:0 0 10px rgba(251,191,36,0.5);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* Paragraphes de la mission */
+.hint p{
+  margin-bottom:14px;
+  font-size:18px;
+}
+
+/* Mots importants en gras avec effet lumineux */
+.hint strong{
+  color:#09c7df;
+  text-shadow:0 0 8px #09c7df,0 0 16px rgba(96,165,250,0.4);
+  animation: glow 2s ease-in-out infinite;
+}
+
+/* Emojis d'alerte avec animation de tremblement */
+.hint .alert-emoji{
+  display:inline-block;
+  animation: shake 0.5s ease-in-out infinite;
+  filter:drop-shadow(0 0 4px rgba(239,68,68,0.8));
+  margin-right:8px;
+}
+
+/* ANIMATIONS */
+/* Animation d'apparition en fondu */
+@keyframes fadeIn{
+  from{opacity:0;transform:translateY(-10px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+/* Animation de pulsation */
+@keyframes pulse{
+  0%,100%{transform:scale(1);opacity:1}
+  50%{transform:scale(1.02);opacity:0.95}
+}
+
+/* Animation de brillance pour les mots importants */
+@keyframes glow{
+  0%,100%{text-shadow:0 0 8px rgba(96,165,250,0.4)}
+  50%{text-shadow:0 0 16px rgba(96,165,250,0.8),0 0 24px rgba(96,165,250,0.4)}
+}
+
+/* Animation de tremblement pour les emojis d'alerte */
+@keyframes shake{
+  0%,100%{transform:translateX(0) rotate(0deg)}
+  25%{transform:translateX(-2px) rotate(-2deg)}
+  75%{transform:translateX(2px) rotate(2deg)}
+}
+
+/* RESPONSIVE */
+/* Sur petits écrans, la sidebar passe en dessous */
+@media (max-width:800px){.container{grid-template-columns:1fr}}
+
+/* OVERLAY DE VICTOIRE */
+.win-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.85);
+  color: #fff;
+  font-family: monospace;
+  font-size: 16px;
+  padding: 20px;
+  box-sizing: border-box;
+  z-index: 1000;
+  /* Permet les interactions de la souris pour sélectionner/copier le texte */
+  pointer-events: auto;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+  text-align: center;
+}
+
+/* Contenu de l'overlay de victoire */
+.win-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  max-width: 80%;
+}
+
+/* Message de victoire */
+.win-message {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0;
+  color: #4ade80;
+  text-shadow: 0 0 10px rgba(74, 222, 128, 0.5);
+  text-align: center;
+}
+
+/* Zone de réponse dans l'overlay */
+.win-overlay pre {
+  margin: 0;
+  white-space: pre-wrap;
+  font-size: 18px;
+  line-height: 1.4;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  cursor: text;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
